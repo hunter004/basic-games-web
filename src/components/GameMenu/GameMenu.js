@@ -10,16 +10,16 @@ const GameMenu = () => {
         <IconButton 
           size="large" 
           edge="start" 
-          color="inherit"
+          color="#050505"
           aria-label="menu"
           sx={{mr:2}}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="H5" component="div" sx={{flexGrow: 1}}>
+          <Typography variant="H5" component="div" sx={{flexGrow: 1,color:"#050505"}}>
             GAMES GAMES GAMES
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button sx={{color:"#050505"}}>Login</Button>
       </Toolbar>
       </AppBar>
     </Box>
