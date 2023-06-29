@@ -25,7 +25,7 @@ const styles = {
         display: 'table',
         textAlign: 'center',
         position: 'relative',
-        top: '25%',left: '35%'
+        margin: '0 auto'
     },
     status: {
         color: '#14d0e0',
