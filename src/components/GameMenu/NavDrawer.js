@@ -1,7 +1,7 @@
 import * as React from "react";
 import {IconButton,Drawer,Divider,List,ListItemButton,
         ListItemIcon,ListItemText} from '@mui/material';
-import {Menu,Home,GridView} from '@mui/icons-material';
+import {Menu,Home,GridView,Filter4Rounded} from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 
 const styles = {
@@ -73,6 +73,16 @@ const styles = {
                                     <GridView/> 
                                 </ListItemIcon>
                                 <ListItemText>TicTacToe</ListItemText>
+                            </ListItemButton>
+                        </List>
+                    </Link>
+                    <Link to='/ConnectFour' style={styles.link}>
+                        <List>
+                            <ListItemButton  key='ConnectFour'>
+                                <ListItemIcon>
+                                    <Filter4Rounded/> 
+                                </ListItemIcon>
+                                <ListItemText>Connect Four</ListItemText>
                             </ListItemButton>
                         </List>
                     </Link>

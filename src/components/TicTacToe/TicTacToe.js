@@ -133,20 +133,6 @@ export default function TicTacToe() {
         setCurrentMove(nextMove);
     }
 
-    // const moves = history.map((squares, move) => {
-    //     let description;
-    //     if (move > 0) {
-    //       description = 'Go to move #' + move;
-    //     } else {
-    //       description = 'Go to game start';
-    //     }
-    //     return (
-    //       <li key={move}>
-    //         <button onClick={() => jumpTo(move)}>{description}</button>
-    //       </li>
-    //     );
-    //   });
-    
       return (
         <div style={styles.home}>
           <div className="game-board">
