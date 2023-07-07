@@ -13,9 +13,9 @@ const styles = {
         background: '#fff',
         border: '5px solid #14d0e0',
         float: 'left',
-        height: '125px',
+        height: '100px',
         padding: 0,
-        width: '125px',
+        width: '100px',
         fontSize: '50px',
         color: '#14d0e0'
     },
