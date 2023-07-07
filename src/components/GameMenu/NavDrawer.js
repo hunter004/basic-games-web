@@ -1,7 +1,7 @@
 import * as React from "react";
 import {IconButton,Drawer,Divider,List,ListItemButton,
         ListItemIcon,ListItemText} from '@mui/material';
-import {Menu,Home,GridView,Filter4Rounded} from '@mui/icons-material';
+import {Menu,Home,GridView,Filter4Rounded,Pin} from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 
 const styles = {
@@ -83,6 +83,16 @@ const styles = {
                                     <Filter4Rounded/> 
                                 </ListItemIcon>
                                 <ListItemText>Connect Four</ListItemText>
+                            </ListItemButton>
+                        </List>
+                    </Link>
+                    <Link to='/CodeBreaker' style={styles.link}>
+                        <List>
+                            <ListItemButton  key='CodeBreaker'>
+                                <ListItemIcon>
+                                    <Pin/> 
+                                </ListItemIcon>
+                                <ListItemText>Code Breaker</ListItemText>
                             </ListItemButton>
                         </List>
                     </Link>
