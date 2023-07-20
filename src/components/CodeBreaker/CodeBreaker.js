@@ -49,10 +49,10 @@ function SetUp({code,tries,maxTries,guess,onGuess}){
     }
     var upToDateGuess = verifyGuess(guess,code.toString());
     let status;
-    if(upToDateGuess === code.toString() && tries <= maxTries){
+    if(upToDateGuess === code.toString() && tries < maxTries){
         status = 'YOU WIN';
     }
-    else if(tries>maxTries){
+    else if(tries>=maxTries){
         status = `${maxTries} GUESSES - YOU LOSE CODE WAS ${code.toString()}`;
     }
     else {
@@ -61,51 +61,53 @@ function SetUp({code,tries,maxTries,guess,onGuess}){
     return (
         <>
             <form onSubmit= {checkCode}>
-            <div style={styles.column}><input 
-                style={styles.rectangle}  
-                type="number" 
-                min="0" 
-                max="9" 
-                name="digZero"
-                value={inputs.digZero || ""}
-                onChange={handleChange}>
-            </input></div>
-            <div style={styles.column}>
-                <input
-                style={styles.rectangle}  
-                type="number" 
-                min="0" 
-                max="9" 
-                name="digOne"
-                value={inputs.digOne || ""}
-                onChange={handleChange}>
-                </input>
-            </div>
-            <div style={styles.column}>
-            <input
-                style={styles.rectangle}  
-                type="number" 
-                min="0" 
-                max="9" 
-                name="digTwo"
-                value={inputs.digTwo || ""}
-                onChange={handleChange}>
-                </input>
+                <div style={styles.column}>
+                    <input 
+                        style={styles.rectangle}  
+                        type="number" 
+                        min="0" 
+                        max="9" 
+                        name="digZero"
+                        value={inputs.digZero || ""}
+                        onChange={handleChange}>
+                    </input>
                 </div>
-            <div style={styles.column}>
-            <input
-                style={styles.rectangle}  
-                type="number" 
-                min="0" 
-                max="9" 
-                name="digThree"
-                value={inputs.digThree || ""}
-                onChange={handleChange}>
-                </input>
+                <div style={styles.column}>
+                    <input
+                        style={styles.rectangle}  
+                        type="number" 
+                        min="0" 
+                        max="9" 
+                        name="digOne"
+                        value={inputs.digOne || ""}
+                    onChange={handleChange}>
+                    </input>
                 </div>
-            <div>
-            <input type="submit" value="Submit Guess!" />
-            </div>
+                <div style={styles.column}>
+                    <input
+                        style={styles.rectangle}  
+                        type="number" 
+                        min="0" 
+                        max="9" 
+                        name="digTwo"
+                        value={inputs.digTwo || ""}
+                        onChange={handleChange}>
+                    </input>
+                </div>
+                <div style={styles.column}>
+                    <input
+                        style={styles.rectangle}  
+                        type="number" 
+                        min="0" 
+                        max="9" 
+                        name="digThree"
+                        value={inputs.digThree || ""}
+                        onChange={handleChange}>
+                    </input>
+                </div>
+                <div>
+                    <input type="submit" value="Submit Guess!" />
+                </div>
             </form>
             <div>
                 {status}
@@ -125,10 +127,9 @@ function verifyGuess(inputGuess,codeToGuess){
 
 
 //to do
-//functionality to track guesses
 //display guesses
-//functionality and display for positions and digits that are correct
-
+//ability to reset for new game
+//overall design
 
 export default function CodeBreaker() {
     const [maxGuesses,setMaxGuesses] = useState(10);
