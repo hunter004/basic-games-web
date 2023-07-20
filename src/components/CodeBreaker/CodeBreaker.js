@@ -32,31 +32,95 @@ const styles = {
     }
 }
 
-function Rectangle() {
-    return (
-        <input style={styles.rectangle} placeholder="9" type="number" min="0" max="9"></input>
-    );
-}
-
-function SetUp(){
-    function checkCode(event){
+function SetUp({code,tries,maxTries,guess,onGuess}){
+    const [inputs,setInputs] = useState({});
+    const handleChange = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+        setInputs(values => ({...values,[name]:value}))
+    }
+    const checkCode = (event) => {
         event.preventDefault();
-        console.log('hit');
+        if(inputs.digZero && inputs.digOne && inputs.digTwo && inputs.digThree)
+        {
+            let fullGuess = inputs.digZero + inputs.digOne + inputs.digTwo + inputs.digThree
+            onGuess(fullGuess);
+        }  
+    }
+    var upToDateGuess = verifyGuess(guess,code.toString());
+    let status;
+    if(upToDateGuess === code.toString() && tries <= maxTries){
+        status = 'YOU WIN';
+    }
+    else if(tries>maxTries){
+        status = `${maxTries} GUESSES - YOU LOSE CODE WAS ${code.toString()}`;
+    }
+    else {
+        status = `${upToDateGuess}`
     }
     return (
         <>
             <form onSubmit= {checkCode}>
-            <div style={styles.column}><Rectangle/></div>
-            <div style={styles.column}><Rectangle/></div>
-            <div style={styles.column}><Rectangle/></div>
-            <div style={styles.column}><Rectangle/></div>
-            <div style={styles.column}><Rectangle/></div>
+            <div style={styles.column}><input 
+                style={styles.rectangle}  
+                type="number" 
+                min="0" 
+                max="9" 
+                name="digZero"
+                value={inputs.digZero || ""}
+                onChange={handleChange}>
+            </input></div>
+            <div style={styles.column}>
+                <input
+                style={styles.rectangle}  
+                type="number" 
+                min="0" 
+                max="9" 
+                name="digOne"
+                value={inputs.digOne || ""}
+                onChange={handleChange}>
+                </input>
+            </div>
+            <div style={styles.column}>
+            <input
+                style={styles.rectangle}  
+                type="number" 
+                min="0" 
+                max="9" 
+                name="digTwo"
+                value={inputs.digTwo || ""}
+                onChange={handleChange}>
+                </input>
+                </div>
+            <div style={styles.column}>
+            <input
+                style={styles.rectangle}  
+                type="number" 
+                min="0" 
+                max="9" 
+                name="digThree"
+                value={inputs.digThree || ""}
+                onChange={handleChange}>
+                </input>
+                </div>
             <div>
-            <input type="submit" value="Submit form" />
+            <input type="submit" value="Submit Guess!" />
             </div>
             </form>
+            <div>
+                {status}
+            </div>
         </>
-    );
+    );   
+}
+
+function verifyGuess(inputGuess,codeToGuess){
+    var returnString = "";
+    for(let i=0; i<codeToGuess.length;i++){
+        if(inputGuess[i] === codeToGuess[i]) returnString += codeToGuess[i];
+        else returnString += " ";
+    }
+    return returnString;
 }
 
 
@@ -64,13 +128,24 @@ function SetUp(){
 //functionality to track guesses
 //display guesses
 //functionality and display for positions and digits that are correct
-//first need to coalesce all inputs into one string/string array
+
 
 export default function CodeBreaker() {
+    const [maxGuesses,setMaxGuesses] = useState(10);
+    const [guesses,setGuesses] = useState(1);
+    const [codeToBreak,setCodeToBreak] = useState(Math.floor(Math.random() * 10000))
+    const [currentGuess,setCurrentGuess] = useState("");
+
+    function handleGuess (fullGuess) {
+        setMaxGuesses(maxGuesses);
+        setCodeToBreak(codeToBreak);
+        setGuesses(guesses+1);
+        setCurrentGuess(fullGuess);
+    }
     return (
         <div style={styles.home}>
             <div style={styles.title}>Code Breaker</div>
-            <SetUp></SetUp>
+            <SetUp code={codeToBreak} tries={guesses} maxTries={maxGuesses} guess={currentGuess} onGuess={handleGuess}></SetUp>
         </div>
     )
 }
